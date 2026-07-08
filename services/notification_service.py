@@ -5,6 +5,8 @@ Handles creating and retrieving notifications.
 Notifications are generated when friends interact with a user's shared songs.
 """
 
+from __future__ import annotations
+
 from app import db
 from models import Notification, Song, User, Rating
 from sqlalchemy import desc
@@ -106,6 +108,18 @@ def rate_song(user_id: str, song_id: str, score: int) -> Rating:
         db.session.add(rating)
 
     db.session.commit()
+
+    adder = db.session.get(User, user_id)
+    if not adder:
+        raise ValueError(f"User {user_id} not found")
+
+    # Notify the person who originally shared the song (if it wasn't them who added it)
+    if song.shared_by != user_id:
+        create_notification(
+            user_id=song.shared_by,
+            notification_type="song_rated",
+            body=f"{adder.username} rated your song '{song.title}' with a {score}/5.",
+        )
 
     return rating
 
