@@ -85,11 +85,11 @@ pytest tests/
 
 | # | Title | Affected service |
 |---|-------|-----------------|
-| 1 | My listening streak keeps resetting | `streak_service.py` |
-| 2 | Friends Listening Now shows people from yesterday | `feed_service.py` |
+| 1 | My listening streak keeps resetting on Sat and Sun (check: test_streak_increments_on_sunday) | `streak_service.py` |
+| 2 | Friends Listening Now shows people from yesterday (should not have a 24 hour limit rather a day limit; please check test_get_friends_listening_now_excludes_yesterday_events) | `feed_service.py` |
 | 3 | The same song keeps showing up twice in search | `search_service.py` |
 | 4 | I got notified when a friend added my song to a playlist but not when they rated it | `notification_service.py` |
-| 5 | The last song in a playlist never shows up | `playlist_service.py` |
+| 5 | The last song in a playlist never shows up (check test test_playlist_returns_all_songs) | `playlist_service.py` |
 
 Full issue descriptions are in the **Project 5 brief**. Read them carefully before opening any service file.
 
