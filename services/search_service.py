@@ -4,6 +4,8 @@ services/search_service.py — Mixtape
 Handles song search logic.
 """
 
+from __future__ import annotations
+
 from app import db
 from models import Song, Tag, song_tags
 

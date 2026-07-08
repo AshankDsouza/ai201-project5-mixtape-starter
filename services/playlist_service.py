@@ -4,6 +4,8 @@ services/playlist_service.py — Mixtape
 Handles playlist creation and retrieval logic.
 """
 
+from __future__ import annotations
+
 from app import db
 from models import Playlist, Song, User, playlist_entries
 from sqlalchemy import asc
